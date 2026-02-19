@@ -17,7 +17,7 @@ import com.example.demo.service.TodolistService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3000") // https://todo-list-plus-front-hironobu0706-hironobu0706s-projects.vercel.app/
 public class TodolistController {
 
 	@Autowired
@@ -34,9 +34,22 @@ public class TodolistController {
 	}
 	
 	@PutMapping("/todolist/update")
-	public int updateTodolist(@RequestBody Todolist todolist) {
+//	ApiError
+	public int updateTodolist(@RequestBody Todolist todolist) { //@Validated @RequestBody, , BindingResult result
 
-		return service.updateTodolist(todolist);
+//		if (result.hasErrors()) {
+//			Map<String, String> errors = new HashMap<>();
+//			for (FieldError error : result.getFieldErrors()) {
+//				errors.put(error.getField(), error.getDefaultMessage());
+//			}
+//
+//			return new ApiError(errors);
+//		}
+//
+//		
+//
+//		return new ApiError(null);
+	    return service.updateTodolist(todolist);
 	}
 
 	@GetMapping("/todolist/delete/{id}")

@@ -23,7 +23,6 @@ public class TodolistService {
 	}
 	
 	public int updateTodolist(Todolist todolist) {
-
 		return todolistRepository.updateTodolist(todolist);
 	}
 
