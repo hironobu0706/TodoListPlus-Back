@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class Todolist {
     private int id;
-    
+    private int priority;
     @Length(max = 100, message = "内容は100文字以内で入力してください。")
     private String contents;
     private String tag;

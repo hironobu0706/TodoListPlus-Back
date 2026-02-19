@@ -10,6 +10,7 @@
 	<select id="getTodolistWithId" resultType="com.example.demo.model.Todolist">
 		select
 			id,
+            priority,
 			contents,
 			tag,
 			status,
@@ -22,6 +23,7 @@
 			Todolist
 		set
 			contents = #{contents},
+			priority = #{priority},
 			tag = #{tag},
 			status = #{status},
 			deadline = #{deadline}
@@ -37,11 +39,13 @@
 	</delete>
 	<insert id="createTodo">
 		insert into todolist (
+		    priority,
 			contents,
 			tag,
 			status,
 			deadline)
 		values(
+		    #{priority},
 			#{contents},
 			#{tag},
 			#{status},
