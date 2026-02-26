@@ -19,5 +19,4 @@ public interface TodolistMapper {
 	int createTodo(Todolist todolist);
 	
 	int completeTodolistWithId(int id);
-
 }
