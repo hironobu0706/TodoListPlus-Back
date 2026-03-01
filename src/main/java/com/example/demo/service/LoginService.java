@@ -15,6 +15,11 @@ public class LoginService {
     // メールアドレス、パスワードを受け取り
     // ログインテーブルからパラメータのメールアドレス、パスワードに一致するレコード取得
 	public Login loginAuth(String mailAddress, String password) {
-		return loginRepository.loginAuth(mailAddress, password);
+		Login responseLogin = new Login();
+		responseLogin = loginRepository.loginAuth(mailAddress, password);
+		if(responseLogin == null) {
+			return null;
+		}
+		return responseLogin;
 	}
 }

@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class Login {
     private String user_id;
-    private String password;
-    private String token;
+    private String mail_address;
+//    private String password;
+//    private String token;
     private String user_name;
 }

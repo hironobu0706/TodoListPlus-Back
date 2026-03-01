@@ -4,7 +4,10 @@
 <mapper namespace="com.example.demo.mapper.LoginMapper">
 	<select id="loginAuth">
 		select
-			*
+          user_id,
+          mail_address,
+          password,
+          user_name
 		from login
 		where
 		  mail_Address = #{mailAddress}

@@ -20,10 +20,21 @@ public class LoginController {
 	private LoginService service;
 	
 	@PostMapping("/loginAuth")
-	public Login loginAuth(@RequestBody RequestLoginForm request) {//
-		System.out.println(request.getMailAddress());
-		System.out.println(request.getPassword());
+	public Login loginAuth(@RequestBody RequestLoginForm request) {
+		Login responseLogin = new Login();
+		responseLogin = service.loginAuth(request.getMailAddress(), request.getPassword());
 		
-		return service.loginAuth(request.getMailAddress(), request.getPassword());
+		if(responseLogin == null) {
+			return null;
+		}
+		
+		// トークンを生成しsession、レスポンスに格納
+//		String hash = Hash.hashString(responseLogin.getUser_id());
+//		session.setAttribute("loginToken", hash);
+		
+//		responseLogin.setToken(hash);
+//		System.out.println("1session:"+session.getAttribute("loginToken"));
+
+		return responseLogin;
 	}
 }

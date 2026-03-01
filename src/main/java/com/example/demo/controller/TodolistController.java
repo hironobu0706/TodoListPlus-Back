@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Todolist;
@@ -24,7 +25,12 @@ public class TodolistController {
 	private TodolistService service;
 
 	@GetMapping("/getAllTodolist")
-	public List<Todolist> getTodolist() {
+	public List<Todolist> getTodolist(@RequestParam("user_id") String user_id) {
+//		System.out.println("inputloginToken:"+loginToken);
+//		System.out.println("2session:"+session.getAttribute("loginToken"));
+//		if(loginToken != session.getAttribute("loginToken")) {
+//			return null;
+//		}
 		return service.getTodolist();
 	}
 
@@ -45,9 +51,6 @@ public class TodolistController {
 //
 //			return new ApiError(errors);
 //		}
-//
-//		
-//
 //		return new ApiError(null);
 	    return service.updateTodolist(todolist);
 	}
