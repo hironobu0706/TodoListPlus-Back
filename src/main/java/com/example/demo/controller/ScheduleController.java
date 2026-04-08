@@ -12,7 +12,8 @@ import com.example.demo.repository.ScheduleRepository;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "*") // このコントローラーの全メソッドを全許可
+//@CrossOrigin("http://localhost:3000")
 public class ScheduleController {
 
 	@Autowired
