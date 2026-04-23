@@ -5,6 +5,7 @@
 	<select id="loginAuth" resultType="com.example.demo.model.Login">
 		select
           user_id
+          ,user_name
 		from login
 		where
 		  mail_Address = #{mailAddress}
