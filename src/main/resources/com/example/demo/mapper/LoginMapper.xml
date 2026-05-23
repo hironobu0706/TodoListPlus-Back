@@ -11,4 +11,14 @@
 		  mail_Address = #{mailAddress}
 		  AND password = #{password}
 	</select>
+	<insert id="createCustomer">
+		insert into login (
+		mail_address,
+		password,
+		user_name)
+		values(
+		#{mail_address},
+		#{password},
+		#{user_name});
+	</insert>
 </mapper>

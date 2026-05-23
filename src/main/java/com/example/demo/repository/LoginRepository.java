@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.LoginEntity;
 import com.example.demo.mapper.LoginMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,4 +19,13 @@ public class LoginRepository {
 	public Login loginAuth(String mailAddress, String password) {
 		return mapper.loginAuth(mailAddress, password);
 	}
+
+	/**
+	 * 顧客情報登録サービス
+	 * @param todolist
+	 * @return 処理件数(1のはず)
+	 */
+    public int createCustomer(LoginEntity request) {
+        return mapper.createCustomer(request);
+    }
 }

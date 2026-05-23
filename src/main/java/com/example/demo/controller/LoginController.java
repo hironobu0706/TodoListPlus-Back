@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Login;
+import com.example.demo.request.RequestCustomerForm;
 import com.example.demo.request.RequestLoginForm;
+import com.example.demo.response.CommonResponse;
 import com.example.demo.service.LoginService;
 
 @RestController
@@ -40,5 +43,24 @@ public class LoginController {
 //		System.out.println("1session:"+session.getAttribute("loginToken"));
 
 		return responseLogin;
+	}
+	
+	@PostMapping("/createCustomer")
+	public ResponseEntity<CommonResponse>
+	createCustomer(@RequestBody RequestCustomerForm request) {
+	    CommonResponse response = new CommonResponse();
+	    try {
+	    	// 実行開始
+	        int retCount = service.createCustomer(request);
+	        response.setSuccess(true);
+	        response.setMessage("処理件数：" + Integer.toString(retCount));
+	        return ResponseEntity.ok(response);
+	    } catch (Exception e) {
+	        response.setSuccess(false);
+	        response.setMessage(e.getMessage());
+	        return ResponseEntity
+	                .badRequest()
+	                .body(response);
+	    }
 	}
 }
