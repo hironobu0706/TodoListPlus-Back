@@ -15,10 +15,14 @@
 		insert into login (
 		mail_address,
 		password,
-		user_name)
+		user_name,
+		created_by,
+		updated_by)
 		values(
 		#{mail_address},
 		#{password},
-		#{user_name});
+		#{user_name},
+		#{created_by},
+		#{updated_by});
 	</insert>
 </mapper>

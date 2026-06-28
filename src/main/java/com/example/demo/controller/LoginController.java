@@ -52,6 +52,8 @@ public class LoginController {
 	    try {
 	    	// 実行開始
 	        int retCount = service.createCustomer(request);
+	        
+	        // 終了処理
 	        response.setSuccess(true);
 	        response.setMessage("処理件数：" + Integer.toString(retCount));
 	        return ResponseEntity.ok(response);

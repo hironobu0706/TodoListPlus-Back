@@ -11,10 +11,13 @@
 			tag,
 			status,
 			deadline
-		from todolist
-		where user_id = #{user_id}
+		from
+			todolist
+		where
+			user_id = #{user_id}
+			AND delete_flg = 0
 	</select>
-	<select id="getTodolistWithId" resultType="com.example.demo.model.Todolist">
+	<select id="getTodolistWithId" resultType="com.example.demo.entity.TodolistEntity">
 		select
 			id,
 			user_id,
@@ -23,8 +26,11 @@
 			tag,
 			status,
 			deadline
-		from todolist
-		where id = #{id}
+		from
+			todolist
+		where
+			id = #{id}
+			AND delete_flg = 0
 	</select>
 	<update id="updateTodolist">
 		update
@@ -38,13 +44,21 @@
 		where
 			id = #{id}
 	</update>
-	<delete id="deleteTodoWithId">
+	<update id="deleteTodoWithId">
+		update
+			Todolist
+		set
+			delete_flg = 1
+		where
+			id = #{id}
+	</update>
+	<!-- <delete id="deleteTodoWithId">
 		delete
 		from
 			Todolist
 		where
 			id = #{id}
-	</delete>
+	</delete> -->
 	<insert id="createTodo">
 		insert into todolist (
 			user_id,
@@ -52,14 +66,18 @@
 			contents,
 			tag,
 			status,
-			deadline)
+			deadline,
+			created_by,
+			updated_by)
 		values(
 			#{user_id},
 		    #{priority},
 			#{contents},
 			#{tag},
 			#{status},
-			#{deadline});
+			#{deadline},
+			#{created_by},
+			#{updated_by});
 	</insert>
 	<update id="completeTodolistWithId">
 		update

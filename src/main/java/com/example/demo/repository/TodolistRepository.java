@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.TodolistEntity;
 import com.example.demo.mapper.TodolistMapper;
-import com.example.demo.model.Todolist;
+import com.example.demo.model.TodolistModel;
 
 @Repository
 @Transactional
@@ -16,24 +17,24 @@ public class TodolistRepository {
 	@Autowired
 	private TodolistMapper mapper;
 
-	public List<Todolist> getTodolistWithUserId(String user_id) {
+	public List<TodolistEntity> getTodolistWithUserId(String user_id) {
 		return mapper.getTodolistWithUserId(user_id);
 	}
 
-	public Todolist getTodolistWithId(int id) {
+	public TodolistEntity getTodolistWithId(int id) {
 		return mapper.getTodolistWithId(id);
 	}
 
-	public int updateTodolist(Todolist todolist) {
-		return mapper.updateTodolist(todolist);
+	public int updateTodolist(TodolistModel todolistModel) {
+		return mapper.updateTodolist(todolistModel);
 	}
 
 	public int deleteTodoWithId(int id) {
 		return mapper.deleteTodoWithId(id);
 	}
 	
-	public int createTodo(Todolist todolist) {
-		return mapper.createTodo(todolist);
+	public int createTodo(TodolistModel todolistModel) {
+		return mapper.createTodo(todolistModel);
 	}
 
 	public int completeTodolistWithId(int id) {

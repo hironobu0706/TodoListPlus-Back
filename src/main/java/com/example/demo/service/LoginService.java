@@ -45,15 +45,9 @@ public class LoginService {
         entity.setMail_address(req.getMailAddress());
         entity.setPassword(req.getPassword());
         entity.setUser_name(req.getUserName());
+        entity.setCreated_by("createCustomer");
+        entity.setUpdated_by("createCustomer");
         
-        // DB用の制御項目（業務ロジック）
-//        Date now = new Date();
-//        entity.setCreated_at(now);
-//        entity.setCreated_by("SYSTEM"); // ログインユーザーにするのが理想
-//        entity.setUpdate_at(now);
-//        entity.setUpdate_by("SYSTEM");
-//        entity.setDelete_flg(0); // 0: 未削除
-
         return entity;
     }
 }

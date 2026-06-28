@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Todolist;
+import com.example.demo.model.TodolistModel;
 import com.example.demo.service.TodolistService;
 
 @RestController
@@ -26,7 +26,7 @@ public class TodolistController {
 	private TodolistService service;
 
 	@GetMapping("/getTodolistWithUserId")
-	public List<Todolist> getTodolist(@RequestParam("user_id") String user_id) {
+	public List<TodolistModel> getTodolist(@RequestParam("user_id") String user_id) {
 //		System.out.println("inputloginToken:"+loginToken);
 //		System.out.println("2session:"+session.getAttribute("loginToken"));
 //		if(loginToken != session.getAttribute("loginToken")) {
@@ -36,13 +36,13 @@ public class TodolistController {
 	}
 
 	@GetMapping("/todolist/{id}")
-	public Todolist getTodolistWithId(@PathVariable("id") String id) {
+	public TodolistModel getTodolistWithId(@PathVariable("id") String id) {
 		return service.getTodolistWithId(Integer.parseInt(id));
 	}
 	
 	@PutMapping("/todolist/update")
 //	ApiError
-	public int updateTodolist(@RequestBody Todolist todolist) { //@Validated @RequestBody, , BindingResult result
+	public int updateTodolist(@RequestBody TodolistModel todolist) { //@Validated @RequestBody, , BindingResult result
 
 //		if (result.hasErrors()) {
 //			Map<String, String> errors = new HashMap<>();
@@ -62,7 +62,7 @@ public class TodolistController {
 	}
 
     @PostMapping("/create")
-    public int createTodo(@RequestBody Todolist todolist) {
+    public int createTodo(@RequestBody TodolistModel todolist) {
         return service.createTodo(todolist);
     }
 

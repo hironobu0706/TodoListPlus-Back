@@ -10,5 +10,7 @@ public class LoginEntity {
     private String mail_address;
     private String password;
     private String user_name;
+    private String created_by;
+    private String updated_by;
 
 }

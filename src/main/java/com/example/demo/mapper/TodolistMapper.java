@@ -4,19 +4,20 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.model.Todolist;
+import com.example.demo.entity.TodolistEntity;
+import com.example.demo.model.TodolistModel;
 
 @Mapper
 public interface TodolistMapper {
-	List<Todolist> getTodolistWithUserId(String user_id);
+	List<TodolistEntity> getTodolistWithUserId(String user_id);
 	
-	Todolist getTodolistWithId(int id);
+	TodolistEntity getTodolistWithId(int id);
 	
-	int updateTodolist(Todolist todolist);
+	int updateTodolist(TodolistModel todolist);
 	
 	int deleteTodoWithId(int id);
 	
-	int createTodo(Todolist todolist);
+	int createTodo(TodolistModel todolist);
 	
 	int completeTodolistWithId(int id);
 }
