@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Login;
+import com.example.demo.model.LoginModel;
 import com.example.demo.request.RequestCustomerForm;
 import com.example.demo.request.RequestLoginForm;
 import com.example.demo.response.CommonResponse;
@@ -26,12 +26,12 @@ public class LoginController {
 	private LoginService service;
 	
 	@PostMapping("/loginAuth")
-	public Login loginAuth(@RequestBody RequestLoginForm request) {
+	public LoginModel loginAuth(@RequestBody RequestLoginForm request) {
 		System.out.println("aaaaaaaaaaa");
-		Login responseLogin = new Login();
-		responseLogin = service.loginAuth(request.getMailAddress(), request.getPassword());
+		LoginModel loginModel = new LoginModel();
+		loginModel = service.loginAuth(request.getMailAddress(), request.getPassword());
 		
-		if(Objects.isNull(responseLogin)) {
+		if(Objects.isNull(loginModel)) {
 			return null;
 		}
 		
@@ -42,7 +42,7 @@ public class LoginController {
 //		responseLogin.setToken(hash);
 //		System.out.println("1session:"+session.getAttribute("loginToken"));
 
-		return responseLogin;
+		return loginModel;
 	}
 	
 	@PostMapping("/createCustomer")

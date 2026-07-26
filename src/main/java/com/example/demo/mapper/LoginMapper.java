@@ -3,11 +3,11 @@ package com.example.demo.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.entity.LoginEntity;
-import com.example.demo.model.Login;
+import com.example.demo.model.LoginModel;
 
 @Mapper
 public interface LoginMapper {
-	Login loginAuth(String mailAddress, String password);
+	LoginModel loginAuth(String mailAddress, String password);
 
 	int createCustomer(LoginEntity request);
 }

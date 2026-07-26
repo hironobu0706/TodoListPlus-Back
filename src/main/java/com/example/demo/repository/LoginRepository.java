@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.Login;
+import com.example.demo.model.LoginModel;
 
 @Repository
 @Transactional
@@ -16,7 +16,7 @@ public class LoginRepository {
 	@Autowired
 	private LoginMapper mapper;
 
-	public Login loginAuth(String mailAddress, String password) {
+	public LoginModel loginAuth(String mailAddress, String password) {
 		return mapper.loginAuth(mailAddress, password);
 	}
 
