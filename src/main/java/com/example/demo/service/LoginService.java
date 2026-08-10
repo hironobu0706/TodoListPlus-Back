@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.LoginEntity;
-import com.example.demo.model.Login;
+import com.example.demo.model.LoginModel;
 import com.example.demo.repository.LoginRepository;
 import com.example.demo.request.RequestCustomerForm;
 
@@ -16,13 +16,13 @@ public class LoginService {
 
     // メールアドレス、パスワードを受け取り
     // ログインテーブルからパラメータのメールアドレス、パスワードに一致するレコード取得
-	public Login loginAuth(String mailAddress, String password) {
-		Login responseLogin = new Login();
-		responseLogin = loginRepository.loginAuth(mailAddress, password);
-		if(responseLogin == null) {
+	public LoginModel loginAuth(String mailAddress, String password) {
+		LoginModel loginModel = new LoginModel();
+		loginModel = loginRepository.loginAuth(mailAddress, password);
+		if(loginModel == null) {
 			return null;
 		}
-		return responseLogin;
+		return loginModel;
 	}
 
 	/**
