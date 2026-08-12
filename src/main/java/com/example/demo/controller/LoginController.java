@@ -18,7 +18,7 @@ import com.example.demo.service.LoginService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "*") // このコントローラーの全メソッドを全許可
+@CrossOrigin(origins = "*") // このコントローラーの全メソッドを全許可　
 //@CrossOrigin("http://localhost:3000") // https://todo-list-plus-front-hironobu0706-hironobu0706s-projects.vercel.app/
 public class LoginController {
 
