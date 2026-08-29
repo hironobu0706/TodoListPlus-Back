@@ -22,8 +22,11 @@ import com.example.demo.service.LoginService;
 //@CrossOrigin("http://localhost:3000") // https://todo-list-plus-front-hironobu0706-hironobu0706s-projects.vercel.app/
 public class LoginController {
 
-	@Autowired
-	private LoginService service;
+	private final LoginService service;
+	
+	public LoginController(LoginService service) {
+		this.service = service;
+	}
 	
 	@PostMapping("/loginAuth")
 	public LoginModel loginAuth(@RequestBody RequestLoginForm request) {
@@ -59,9 +62,10 @@ public class LoginController {
 	        return ResponseEntity.ok(response);
 	    } catch (Exception e) {
 	        response.setSuccess(false);
-	        response.setMessage(e.getMessage());
+	        response.setMessage("システムエラーが発生しました。");
+
 	        return ResponseEntity
-	                .badRequest()
+	                .internalServerError()
 	                .body(response);
 	    }
 	}
