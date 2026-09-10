@@ -44,3 +44,9 @@ jobs:
 
       - name: Run Test
         run: ./mvnw test
+
+      - name: Build Jar
+        run: ./mvnw package -DskipTests
+
+      - name: Build Docker Image
+        run: docker build -t todolistplus .
