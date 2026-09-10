@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 17
 
       - name: Run Test
         run: ./mvnw test
@@ -47,4 +47,26 @@ jobs:
         run: ./mvnw package -DskipTests
 
       - name: Build Docker Image
-        run: docker build -t todolistplus .
+        run: docker build -f Dockerfile.ecs -t todolistplus .
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Push Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: todolistplus_back
+        run: |
+          docker tag todolistplus:latest \
+            $ECR_REGISTRY/$ECR_REPOSITORY:latest
+      
+          docker push \
+            $ECR_REGISTRY/$ECR_REPOSITORY:latest
