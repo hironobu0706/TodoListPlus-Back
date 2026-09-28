@@ -18,21 +18,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 実行準備 
       - name: Test Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
+      # test 実行
       - name: Run Test
         run: ./mvnw test
 
+      # mvnでjarを作成
       - name: Build Jar
         run: ./mvnw package -DskipTests
 
+      # docker image作成
       - name: Build Docker Image
         run: docker build -f Dockerfile.ecs -t todolistplus .
-
+		
+      # githubの環境変数を取得
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -40,10 +45,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
 
+      # ECRにログイン
       - name: Login to ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+		# ECRにimageプッシュ
       - name: Push Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
